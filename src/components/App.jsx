@@ -5,9 +5,9 @@ import Section from "./Section";
 
 function App() {
   const [feedback, setFeedback] = useState({ 
-    good: 0, 
-    neutral: 0, 
-    bad: 0,
+    Good: 0, 
+    Neutral: 0, 
+    Bad: 0,
  });
 
  const handleFeedback = (feedbackType) =>
@@ -17,33 +17,45 @@ function App() {
   }));
 }
 const countTotalFeedback = () => {
-  return feedback.good + feedback.neutral + feedback.bad;
+  return feedback.Good + feedback.Neutral + feedback.Bad;
   }
 
   const countPositiveFeedbackPercentage = () =>{
     const total = countTotalFeedback();
-    return total > 0 ? Math.round((feedback.good/total) * 100) : 0;
+    return total > 0 ? Math.round((feedback.Good/total) * 100) : 0;
   }
 
   const totalFeedback = countTotalFeedback();
   const positiveFeedback = countPositiveFeedbackPercentage();
 
   return (
-    <>
-      <h1>Espresso Feedback</h1>
-
+    <div>
+      <h1 style = {{
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: 40,
+          fontStyle: "italic",
+          color: "brown",
+      }}>
+            Espresso Feedback</h1>
+      <Section title= "Please submitt your feedback">
       <FeedbackOptions 
-      options = {['good', 'neutral','bad']}
+      options = {['Good', 'Neutral','Bad']}
       customerFeedback = {handleFeedback}
       />
-      
-      <Statistics 
-        good={feedback.good} 
-        neutral={feedback.neutral} 
-        bad={feedback.bad} 
+      </Section>
+
+      <Section title ="Customer's feedback">
+      <Statistics
+        good={feedback.Good} 
+        neutral={feedback.Neutral} 
+        bad={feedback.Bad} 
         total={totalFeedback} 
         positivePercentage={positiveFeedback}/>
-    </>
+      </Section>
+    </div>
   );
 }
 
