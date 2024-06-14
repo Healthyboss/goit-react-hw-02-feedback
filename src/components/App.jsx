@@ -24,16 +24,25 @@ const countTotalFeedback = () => {
     const total = countTotalFeedback();
     return total > 0 ? Math.round((feedback.good/total) * 100) : 0;
   }
+
+  const totalFeedback = countTotalFeedback();
+  const positiveFeedback = countPositiveFeedbackPercentage();
+
   return (
     <>
       <h1>Espresso Feedback</h1>
+
+      <FeedbackOptions 
+      options = {['good', 'neutral','bad']}
+      customerFeedback = {handleFeedback}
+      />
+      
       <Statistics 
-        good={} 
-        neutral={} 
-        bad={} 
-        total={} 
-        positivePercentage={}>
-      </Statistics>
+        good={feedback.good} 
+        neutral={feedback.neutral} 
+        bad={feedback.bad} 
+        total={totalFeedback} 
+        positivePercentage={positiveFeedback}/>
     </>
   );
 }
