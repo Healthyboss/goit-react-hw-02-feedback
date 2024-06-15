@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Statistics from "./Statistics";
 import FeedbackOptions from "./FeedbackOptions";
 import Section from "./Section";
+import Notification from "./Notification";
 
 function App() {
   const [feedback, setFeedback] = useState({ 
@@ -39,7 +40,8 @@ const countTotalFeedback = () => {
           fontStyle: "italic",
           color: "brown",
       }}>
-            Espresso Feedback</h1>
+        Espresso Coffe House Feedback</h1>
+
       <Section title= "Please submitt your feedback">
       <FeedbackOptions 
       options = {['Good', 'Neutral','Bad']}
@@ -48,13 +50,18 @@ const countTotalFeedback = () => {
       </Section>
 
       <Section title ="Customer's feedback">
-      <Statistics
-        good={feedback.Good} 
-        neutral={feedback.Neutral} 
-        bad={feedback.Bad} 
-        total={totalFeedback} 
-        positivePercentage={positiveFeedback}/>
+        {totalFeedback > 0 ?
+          (<Statistics
+          good={feedback.Good} 
+          neutral={feedback.Neutral} 
+          bad={feedback.Bad} 
+          total={totalFeedback} 
+          positivePercentage={positiveFeedback}/>)
+        :
+          <Notification message="No feedback provided"/>
+        }
       </Section>
+
     </div>
   );
 }
