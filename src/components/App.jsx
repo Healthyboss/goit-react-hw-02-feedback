@@ -35,7 +35,7 @@ const countTotalFeedback = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          fontSize: 40,
+          fontSize: 35,
           fontStyle: "italic",
           color: "brown",
       }}>
